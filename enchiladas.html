@@ -1,400 +1,233 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enchiladas - Recette traditionnelle mexicaine</title>
-    <style>
-        /* Reset et styles de base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enchiladas - Recette traditionnelle mexicaine</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Styles d'origine pour les sections non Bootstrap */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #f5f5f5; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
-            padding: 0;
-            margin: 0;
-        }
+    .nutri-score {
+      display: inline-block;
+      background-color: white;
+      color: #333;
+      padding: 0.3rem 1rem;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
 
-        header {
-            background-color: #c12b2b;
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            margin-bottom: 2rem;
-            background: linear-gradient(to right, #c12b2b, #e67e22);
-        }
+    .preparation-section {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      border-left: 5px solid #e67e22;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-        .subtitle {
-            font-style: italic;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
+    .step-item {
+      display: flex;
+      align-items: center;
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
 
-        .nutri-score {
-            display: inline-block;
-            background-color: white;
-            color: #333;
-            padding: 0.3rem 1rem;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 1rem;
-        }
+    .step-icon {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
+    .step-content {
+      flex-grow: 1;
+      font-size: 16px;
+      color: #333;
+    }
 
-        .recipe-presentation {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
+    .step-radio {
+      margin-left: 15px;
+      width: 20px;
+      height: 20px;
+      accent-color: #1e90ff;
+    }
 
-        .recipe-image {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .recipe-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            border: 3px solid #e67e22;
-        }
-
-        .recipe-description {
-            flex: 1;
-            min-width: 300px;
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-top: 5px solid #c12b2b;
-        }
-
-        .ingredients-section {
-            margin-bottom: 2rem;
-        }
-
-        .ingredients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .ingredient-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            border-top: 3px solid #e67e22;
-        }
-
-        .ingredient-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .ingredient-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
-        }
-
-        .ingredient-info {
-            padding: 1rem;
-        }
-
-        .ingredient-name {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #c12b2b;
-        }
-
-        .preparation-section {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-            border-left: 5px solid #e67e22;
-        }
-
-        .steps-list {
-            list-style-position: inside;
-            margin-top: 1rem;
-        }
-
-        .steps-list li {
-            margin-bottom: 0.8rem;
-            padding-left: 0.5rem;
-        }
-        .preparation-section {
-           margin: 40px 0;
-         padding: 0 20px;
-        }
-
-        .steps-list {
-         list-style: none;
-         padding: 0;
-            margin: 0;
-        }
-
-        .step-item {
-            display: flex;
-            align-items: center;
-            background-color: #f9f9f9;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .step-icon {
-            width: 50px;
-            height: 50px;
-            margin-right: 15px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .step-content {
-            flex-grow: 1;
-            font-size: 16px;
-            color: #333;
-        }
-
-        .step-radio {
-            margin-left: 15px;
-            width: 20px;
-            height: 20px;
-            accent-color: #1e90ff; /* couleur bleue pour les radios */
-        }
-
-
-        footer {
-            background: linear-gradient(to right, #c12b2b, #e67e22);
-            color: white;
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .recipe-presentation {
-                flex-direction: column;
-            }
-
-            .ingredients-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    footer {
+      background: linear-gradient(to right, #c12b2b, #e67e22);
+      color: white;
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-    <!-- En-tête -->
-    <header>
-        <h1>Enchiladas Mexicanas</h1>
-        <p class="subtitle">La recette authentique du Mexique</p>
-        <div class="nutri-score"></div>
-    </header>
-
+  <header class="bg-danger bg-gradient text-white text-center py-5">
     <div class="container">
-        <!-- Présentation de la recette -->
-        <section class="recipe-presentation">
-            <div class="recipe-image">
-                <img src="https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Enchiladas">
+      <h1 class="display-4">Enchiladas Mexicanas</h1>
+      <p class="lead fst-italic">La recette authentique du Mexique</p>
+      <div class="nutri-score my-3"></div>
+    </div>
+  </header>
+
+  <div class="container my-5">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <img src="https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Enchiladas" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-6">
+        <h2 class="text-danger">Les Enchiladas</h2>
+        <p>Les enchiladas sont un plat traditionnel mexicain composé de tortillas de maïs enroulées et garnies de divers ingrédients, recouvertes d'une sauce piquante.</p>
+        <p>Cette recette vous propose une version classique avec poulet et sauce tomate épicée, mais vous pouvez adapter les garnitures selon vos goûts.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-5">
+    <h2 class="mb-4 text-primary">Ingrédients (pour 4 personnes)</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="productList"></div>
+  </div>
+
+  <section class="preparation-section">
+    <h2>Préparation</h2>
+    <ul class="steps-list">
+      <li class="step-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
+        <div class="step-content">
+          <strong>Étape 1</strong><br>
+          Dans une poêle, faites revenir 1 oignon émincé avec de l'ail. Ajoutez les tomates coupées en dés et les piments épépinés et hachés.
+          Laissez mijoter 15 minutes puis mixez pour obtenir une sauce lisse.
+        </div>
+        <input type="radio" name="step" class="step-radio" />
+      </li>
+      <li class="step-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
+        <div class="step-content">
+          <strong>Étape 2</strong><br>
+          Faites cuire les blancs de poulet dans une poêle avec un peu d'huile. Une fois cuit, effilochez-le à la fourchette.
+        </div>
+        <input type="radio" name="step" class="step-radio" />
+      </li>
+  
+      <li class="step-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
+        <div class="step-content">
+          <strong>Étape 3</strong><br>
+          Préchauffez votre four à 180°C (thermostat 6).
+        </div>
+        <input type="radio" name="step" class="step-radio" />
+      </li>
+  
+      <li class="step-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
+        <div class="step-content">
+          <strong>Étape 4</strong><br>
+          Trempez brièvement chaque tortilla dans la sauce tomate pour l'assouplir. Garnissez-la de poulet effiloché et d'un peu d'oignon cru émincé.
+          Roulez la tortilla et placez-la dans un plat à gratin.
+        </div>
+        <input type="radio" name="step" class="step-radio" />
+      </li>
+  
+      <li class="step-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
+        <div class="step-content">
+          <strong>Étape 5</strong><br>
+          Répétez l'opération pour toutes les tortillas. Recouvrez le tout de sauce restante et parsemez de fromage râpé.
+        </div>
+        <input type="radio" name="step" class="step-radio" />
+      </li>
+  
+      <li class="step-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
+        <div class="step-content">
+          <strong>Étape 6</strong><br>
+          Enfournez pour 15-20 minutes jusqu'à ce que le fromage soit bien fondu et légèrement gratiné.
+        </div>
+        <input type="radio" name="step" class="step-radio" />
+      </li>
+  
+      <li class="step-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
+        <div class="step-content">
+          <strong>Étape 7</strong><br>
+          Servez chaud, accompagné de crème fraîche, d'avocat et de coriandre fraîche.
+        </div>
+        <input type="radio" name="step" class="step-radio" />
+      </li>
+ </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 Recette des Enchiladas - Tous droits réservés</p>
+    <p>¡Viva México! - D'autres recettes mexicaines sur notre site</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const productList = [26066097, 27067598, 3760324300183, 8710637105628, 20183103, 3245413820297];
+      const container = document.getElementById("productList");
+      const nutriDisplay = document.querySelector(".nutri-score");
+      const nutriMap = { a: 1, b: 2, c: 3, d: 4, e: 5 };
+      const reverseNutriMap = { 1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e' };
+      const nutriScores = [];
+
+      function addIngredientCard(product) {
+        const grade = product.nutriscore_grade?.toLowerCase();
+        const nutriImage = grade && nutriMap[grade]
+          ? `<img src="https://static.openfoodfacts.org/images/attributes/dist/nutriscore-${grade}.svg" style="height: 30px; margin-top: 0.5rem;" />`
+          : `<span style="color: #999;">Nutri-score inconnu</span>`;
+
+        const card = document.createElement("div");
+        card.className = "col";
+        card.innerHTML = `
+          <div class="card h-100 shadow-sm border-0">
+            <img src="${product.image_front_small_url || 'https://via.placeholder.com/500x200?text=Image+indisponible'}" alt="${product.product_name}" class="card-img-top" style="height: 120px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title text-danger">${product.product_name}</h5>
+              ${nutriImage}
             </div>
-            <div class="recipe-description">
-                <h2>Les Enchiladas</h2>
-                <p>Les enchiladas sont un plat traditionnel mexicain composé de tortillas de maïs enroulées et garnies de divers ingrédients, recouvertes d'une sauce piquante. Le nom "enchilada" vient du verbe espagnol "enchilar" qui signifie "ajouter du piment".</p>
-                <p>Cette recette vous propose une version classique avec poulet et sauce tomate épicée, mais vous pouvez adapter les garnitures selon vos goûts.</p>
-            </div>
-        </section>
+          </div>`;
+        container.appendChild(card);
+      }
 
-        <!-- Ingrédients -->
-        <section class="ingredients-section">
-            <h2>Ingrédients (pour 4 personnes)</h2>
-            <div class="ingredients-grid" id="productList"></div>
-        </section>
-        <section class="preparation-section">
-            <h2>Préparation</h2>
-            <ul class="steps-list">
-          
-              <li class="step-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
-                <div class="step-content">
-                  <strong>Étape 1</strong><br>
-                  Dans une poêle, faites revenir 1 oignon émincé avec de l'ail. Ajoutez les tomates coupées en dés et les piments épépinés et hachés.
-                  Laissez mijoter 15 minutes puis mixez pour obtenir une sauce lisse.
-                </div>
-                <input type="radio" name="step" class="step-radio" />
-              </li>
-          
-              <li class="step-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
-                <div class="step-content">
-                  <strong>Étape 2</strong><br>
-                  Faites cuire les blancs de poulet dans une poêle avec un peu d'huile. Une fois cuit, effilochez-le à la fourchette.
-                </div>
-                <input type="radio" name="step" class="step-radio" />
-              </li>
-          
-              <li class="step-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
-                <div class="step-content">
-                  <strong>Étape 3</strong><br>
-                  Préchauffez votre four à 180°C (thermostat 6).
-                </div>
-                <input type="radio" name="step" class="step-radio" />
-              </li>
-          
-              <li class="step-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
-                <div class="step-content">
-                  <strong>Étape 4</strong><br>
-                  Trempez brièvement chaque tortilla dans la sauce tomate pour l'assouplir. Garnissez-la de poulet effiloché et d'un peu d'oignon cru émincé.
-                  Roulez la tortilla et placez-la dans un plat à gratin.
-                </div>
-                <input type="radio" name="step" class="step-radio" />
-              </li>
-          
-              <li class="step-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
-                <div class="step-content">
-                  <strong>Étape 5</strong><br>
-                  Répétez l'opération pour toutes les tortillas. Recouvrez le tout de sauce restante et parsemez de fromage râpé.
-                </div>
-                <input type="radio" name="step" class="step-radio" />
-              </li>
-          
-              <li class="step-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
-                <div class="step-content">
-                  <strong>Étape 6</strong><br>
-                  Enfournez pour 15-20 minutes jusqu'à ce que le fromage soit bien fondu et légèrement gratiné.
-                </div>
-                <input type="radio" name="step" class="step-radio" />
-              </li>
-          
-              <li class="step-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynKRomupCfvQFQjAB8g4FkHrYf_E8DYgiyA&s" alt="logo enchiladas" class="step-icon">
-                <div class="step-content">
-                  <strong>Étape 7</strong><br>
-                  Servez chaud, accompagné de crème fraîche, d'avocat et de coriandre fraîche.
-                </div>
-                <input type="radio" name="step" class="step-radio" />
-              </li>
-          
-            </ul>
-          </section>
-          
+      function updateAverageNutriScore() {
+        if (nutriScores.length === 0) return;
+        const sum = nutriScores.reduce((acc, val) => acc + val, 0);
+        const avg = Math.round(sum / nutriScores.length);
+        const avgLetter = reverseNutriMap[avg];
 
+        nutriDisplay.innerHTML = `
+          <img src="https://static.openfoodfacts.org/images/attributes/dist/nutriscore-${avgLetter}.svg" style="height: 60px;" />
+          <p class="mt-2">Nutri-score moyen : ${avgLetter.toUpperCase()}</p>`;
+      }
 
-    <!-- Pied de page -->
-    <footer>
-        <p>© 2025 Recette des Enchiladas - Tous droits réservés</p>
-        <p>¡Viva México! - D'autres recettes mexicaines sur notre site</p>
-    </footer>
-
-    <!-- Script JavaScript -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const productList = [
-                26066097, // Oignon
-                27067598, // Saucisse
-                3760324300183, // Chorizo
-                8710637105628, // Wraps
-                20183103, // Oeufs
-                3245413820297 // Béchamel
-            ];
-
-            const container = document.getElementById("productList");
-            const nutriDisplay = document.querySelector(".nutri-score");
-
-            const nutriMap = { a: 1, b: 2, c: 3, d: 4, e: 5 };
-            const reverseNutriMap = { 1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e' };
-            const nutriScores = [];
-
-            function addIngredientCard(product) {
-                const grade = product.nutriscore_grade?.toLowerCase();
-                const nutriImage = grade && nutriMap[grade]
-                    ? `<img src="https://static.openfoodfacts.org/images/attributes/dist/nutriscore-${grade}.svg" 
-                             alt="Nutri-score ${grade.toUpperCase()}" 
-                             style="height: 50px; margin-top: 0.5rem;" />`
-                    : `<span style="color: #999;">Nutri-score inconnu</span>`;
-
-                const card = document.createElement("div");
-                card.className = "ingredient-card";
-                card.innerHTML = `
-                    <img src="${product.image_front_small_url || 'https://via.placeholder.com/500x200?text=Image+indisponible'}" 
-                         alt="${product.product_name}" 
-                         class="ingredient-img">
-                    <div class="ingredient-info">
-                        <div class="ingredient-name">${product.product_name}</div>
-                        ${nutriImage}
-                    </div>
-                `;
-                container.appendChild(card);
+      productList.forEach(code => {
+        fetch(`https://world.openfoodfacts.net/api/v2/product/${code}?fields=product_name,nutriscore_grade,image_front_small_url`)
+          .then(res => res.json())
+          .then(data => {
+            if (data.product) {
+              const grade = data.product.nutriscore_grade?.toLowerCase();
+              if (grade && nutriMap[grade]) nutriScores.push(nutriMap[grade]);
+              addIngredientCard(data.product);
+              updateAverageNutriScore();
             }
-
-            function updateAverageNutriScore() {
-                if (nutriScores.length === 0) return;
-                const sum = nutriScores.reduce((acc, val) => acc + val, 0);
-                const avg = Math.round(sum / nutriScores.length);
-                const avgLetter = reverseNutriMap[avg];
-
-                nutriDisplay.innerHTML = `
-                    <img src="https://static.openfoodfacts.org/images/attributes/dist/nutriscore-${avgLetter}.svg"
-                         alt="Nutri-score moyen : ${avgLetter.toUpperCase()}"
-                         style="height: 60px;" />
-                    <p style="margin-top: 0.5rem;">Nutri-score moyen : ${avgLetter.toUpperCase()}</p>
-                `;
-            }
-
-            productList.forEach(code => {
-                fetch(`https://world.openfoodfacts.net/api/v2/product/${code}?fields=product_name,nutriscore_grade,image_front_small_url`)
-                    .then(response => {
-                        if (!response.ok) throw new Error("HTTP error " + response.status);
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.product) {
-                            const grade = data.product.nutriscore_grade?.toLowerCase();
-                            if (grade && nutriMap[grade]) {
-                                nutriScores.push(nutriMap[grade]);
-                            }
-                            addIngredientCard(data.product);
-                            updateAverageNutriScore();
-                        }
-                    })
-                    .catch(err => {
-                        console.error("Erreur chargement produit :", err);
-                    });
-            });
-        });
-    </script>
+          });
+      });
+    });
+  </script>
 </body>
 </html>
